@@ -1,4 +1,4 @@
 def call() {
-    sh "echo hello worls"
+    sh "echo hello world"
 }
 
