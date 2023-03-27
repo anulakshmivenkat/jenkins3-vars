@@ -1,4 +1,4 @@
-def call() {
-    sh "echo hello world"
+def call(def usernameInputvalue)
+{
+    echo "My Name is $(usernameInputvalue)"
 }
-
