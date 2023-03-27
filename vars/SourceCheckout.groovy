@@ -1,12 +1,12 @@
-def call(def giturl,def branch) {
+def call (def giturl, def branch) {
     echo ""
-    echo "****** Git URL : ${giturl} ******"
+    echo "****** Git URL: ${giturl} ******"
     echo ""
-    echo "****** Git Branch : ${branch} ******"
+    echo "****** Git Branch: ${branch} ******"
     echo ""
     if(giturl.contains("github.com"))
     {
-        checkout([$class: 'Gitscm', branches: [[name: branch ]], extensions: [], userRemoteConfigs: [
+        checkout([$class: 'GitSCM', branches: [[name: branch ]], extensions: [], userRemoteConfigs: [
             [credentialsId: 'github', url: giturl]
         ]])
     }
