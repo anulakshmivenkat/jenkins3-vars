@@ -6,7 +6,7 @@ def call(def giturl,def branch) {
     echo ""
     if(giturl.contains("github.com"))
     {
-        checkout([$class: 'GitSCM',branches: [[name: branch ]],extensions: [] userRemoteConfigs: [
+        checkout([$class: 'GitSCM', branches: [[name: branch ]], extensions: [], userRemoteConfigs: [
             [credentialsId: 'github', url: giturl]
         ]])
     }
