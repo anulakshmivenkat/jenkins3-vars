@@ -7,8 +7,8 @@ def call(String repoUrl) {
   pipeline {
        agent any
        tools {
-           maven 'Maven 3.5.0'
-           jdk 'jdk8'
+           maven 'maven'
+           //jdk 'jdk8'
        }
        stages {
            stage("Tools initialization") {
