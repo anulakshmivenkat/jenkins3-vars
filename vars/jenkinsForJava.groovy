@@ -1,5 +1,5 @@
 vars
-| --- welcomeJob.groovy
+//| --- welcomeJob.groovy
 | --- jenkinsForJava.groovy
  
 // jenkinsForJava.groovy
