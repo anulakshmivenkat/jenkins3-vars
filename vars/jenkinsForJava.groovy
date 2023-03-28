@@ -1,6 +1,6 @@
-vars
+//vars
 //| --- welcomeJob.groovy
-| --- jenkinsForJava.groovy
+//| --- jenkinsForJava.groovy
  
 // jenkinsForJava.groovy
 def call(String repoUrl) {
