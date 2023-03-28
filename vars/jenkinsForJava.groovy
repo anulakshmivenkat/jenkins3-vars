@@ -19,7 +19,7 @@ def call(String repoUrl) {
            }
            stage("Checkout Code") {
                steps {
-                   git branch: 'master',credentialsId: 'shared',
+                   git branch: 'master',
                        url: "${repoUrl}"
                }
            }
