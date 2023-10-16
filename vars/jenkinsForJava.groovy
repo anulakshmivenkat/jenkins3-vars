@@ -1,32 +1,42 @@
-@Library('myjava-library') _
+// vars/buildAndTestPipeline.groovy
 
-pipeline {
-    agent any
+def call() {
+    pipeline {
+        agent any
 
-    stages {
-        stage('Checkout') {
-            steps {
-                // Checkout the source code
-                checkout scm
+        stages {
+            stage('Checkout') {
+                steps {
+                    checkout scm
+                }
             }
-        }
 
-        stage('Build and Test') {
-            steps {
-                script {
-                    // Call a function from the shared library
-                    myFunction()
+            stage('Build') {
+                steps {
+                    script {
+                        // Build your project (e.g., compile code, generate artifacts)
+                        sh 'mvn clean install'  // Replace with your build commands
+                    }
+                }
+            }
+
+            stage('Test') {
+                steps {
+                    script {
+                        // Run tests on your project (e.g., unit tests, integration tests)
+                        sh 'mvn test'  // Replace with your test commands
+                    }
                 }
             }
         }
-    }
 
-    post {
-        success {
-            echo 'Build and test successful!'
-        }
-        failure {
-            echo 'Build or test failed!'
+        post {
+            success {
+                echo 'Build and test successful!'
+            }
+            failure {
+                echo 'Build or test failed!'
+            }
         }
     }
 }
