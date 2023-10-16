@@ -1,44 +1,42 @@
-//vars
-//| --- welcomeJob.groovy
-//| --- jenkinsForJava.groovy
- 
-// jenkinsForJava.groovy
-def call(String repoUrl) {
-  pipeline {
-       agent any
-       tools {
-           maven 'maven3'
-           //jdk 'jdk8'
-       }
-       stages {
-           stage("Tools initialization") {
-               steps {
-                   sh "mvn --version"
-                   sh "java -version"
-               }
-           }
-           stage("Checkout Code") {
-               steps {
-                   git branch: 'master',
-                    credentialsId: 'shared',
-                       url: "${repoUrl}"
-               }
-           }
-           stage("Cleaning workspace") {
-               steps {
-                   sh "mvn clean"
-               }
-           }
-           stage("Running Testcase") {
-              steps {
-                   sh "mvn test"
-               }
-           }
-           stage("Packing Application") {
-               steps {
-                   sh "mvn package -DskipTests"
-               }
-           }
-       }
-   }
+// vars/buildAndTestPipeline.groovy
+
+def call() {
+    pipeline {
+        agent any
+
+        stages {
+            stage('Checkout') {
+                steps {
+                    checkout scm
+                }
+            }
+
+            stage('Build') {
+                steps {
+                    script {
+                        // Build your project (e.g., compile code, generate artifacts)
+                        sh 'mvn clean install'  // Replace with your build commands
+                    }
+                }
+            }
+
+            stage('Test') {
+                steps {
+                    script {
+                        // Run tests on your project (e.g., unit tests, integration tests)
+                        sh 'mvn test'  // Replace with your test commands
+                    }
+                }
+            }
+        }
+
+        post {
+            success {
+                echo 'Build and test successful!'
+            }
+            failure {
+                echo 'Build or test failed!'
+            }
+        }
+    }
 }
